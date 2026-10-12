@@ -38,7 +38,7 @@ if (mode !== "report") {
       )
     ).parseCredentialsDocument;
   } catch {
-    for (const a of settings.accounts) state.setCheckpoint(a.id, {lastError:"后台缺少官方凭据组件，同步未完成",status:"error"});
+    if (!state.loadError) for (const a of settings.accounts) state.setCheckpoint(a.id, {lastError:"后台缺少官方凭据组件，同步未完成",status:"error"});
     console.error(
       "后台缺少 DSH 官方凭据组件，请重新运行安装器指定 SDK 位置。不会反复弹授权框。",
     );

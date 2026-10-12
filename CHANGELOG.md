@@ -1,8 +1,8 @@
 # Changelog
 
-本文件记录 dsh-mail-guardian 的版本变化。**尚未发布到 npm**：v0.2.0 是仓库内当前版本（`package.json` 中 `version: 0.2.0`），安装方式见 [README.md](README.md#安装)。
+本文件记录 dsh-mail-guardian 的版本变化。**尚未发布到 npm**：v0.2.1 是仓库内当前版本（`package.json` 中 `version: 0.2.1`），安装方式见 [README.md](README.md#安装)。
 
-## 0.2.0 — 缓存优先重构（当前）
+## 0.2.1 — 缓存优先重构（当前）
 
 这一版把「收信」从用户可见的操作彻底挪到了后台：前台一律读本机缓存、立即返回，收信只由独立 worker 在后台做。
 
@@ -40,6 +40,8 @@
 
 ### Security
 
+- 即使官方凭据组件缺失，也绝不覆盖已损坏的缓存文件或重置用户规则。
+
 - **拒绝不安全的移动路径**：服务器既不支持 `MOVE` 也无 `UIDPLUS`、且非 Gmail（无 `X-GM-EXT-1`）时，直接抛错拒绝移动，**不用全局 `EXPUNGE` 兜底**。
 - **Gmail 走原生标签**：无 `UIDPLUS` 的 Gmail 用 `X-GM-LABELS` 增删标签实现可逆归档，无需 EXPUNGE。
 - **服务器明确拒绝不掩盖**：`MOVE` 返回 `NO`/`BYE`（如目标文件夹不存在、策略拦截）时如实上报，只有 `BAD`（未知命令）才走回退。
@@ -47,8 +49,8 @@
 
 ### Verified（本机验收记录）
 
-- **133 项离线测试通过**（12 个测试文件，`npm test`，0 失败）：IMAP 协议层、MIME、配置、判断、状态、报告、工具面、宿主 SDK 契约、端到端流水线。
-- **`npm test` 与 `node --test --experimental-test-isolation=none test/*.test.mjs` 两条路径均为 133 通过 / 0 失败**。
+- **134 项离线测试通过**（13 个测试文件，`npm test`，0 失败）：IMAP 协议层、MIME、配置、判断、状态、报告、工具面、宿主 SDK 契约、端到端流水线。
+- **`npm test` 与 `node --test --experimental-test-isolation=none test/*.test.mjs` 两条路径均为 134 通过 / 0 失败**。
 - **本机缓存报告约 92–115 ms**（读本地缓存，不联网）；**双邮箱只读刷新一轮约 14.6 s**。
   > 这只是**一次**本机实测，取决于邮箱服务商、网络与邮件数量，**不是性能承诺，也不保证在所有网络环境下成立**。
 - **`config.example.yml` 通过真实 `resolveSettings` 校验**；安全默认值实测为 `automation={moveRules:false,moveHeuristics:false}`、`modelJudge={enabled:false}`。
@@ -69,4 +71,4 @@
 - 规则学习（keep / drop / block）与检索问答。
 - 9 个 agent 工具，零运行时依赖，离线测试通过。
 
-> 0.1.0 从未发布：仓库内版本已直接推进到 0.2.0。
+> 0.1.0 从未发布：仓库内版本已直接推进到 0.2.1。

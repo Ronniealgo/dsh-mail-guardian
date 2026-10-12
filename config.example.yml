@@ -1,4 +1,4 @@
-# dsh-mail-guardian v0.2.0 — 配置示例
+# dsh-mail-guardian v0.2.1 — 配置示例
 #
 # 用法：把下面 config: 块的内容复制进插件条目（cordis.patch.yml 的 config:
 # 或插件管理器里该插件条目的配置）。也可以直接把本文件的 config: 块当作模板。
