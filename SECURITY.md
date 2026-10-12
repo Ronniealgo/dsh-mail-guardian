@@ -1,6 +1,6 @@
-# 安全说明（dsh-mail-guardian v0.2.2）
+# 安全说明（dsh-mail-guardian v0.2.3）
 
-本文件说明插件的数据流、权限边界与安全保证，以及**它明确不做的事**。适用于 v0.2.2。
+本文件说明插件的数据流、权限边界与安全保证，以及**它明确不做的事**。适用于 v0.2.3。
 
 > 普通缺陷可提交 [GitHub Issue](https://github.com/Ronniealgo/dsh-mail-guardian/issues)。涉及密钥或隐私的漏洞请使用 [GitHub 私密安全报告](https://github.com/Ronniealgo/dsh-mail-guardian/security/advisories/new)，不要在公开 Issue 中贴出凭据、真实邮件或本机缓存。
 
