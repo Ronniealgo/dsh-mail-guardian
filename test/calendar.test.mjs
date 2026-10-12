@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {dayKey} from '../lib/report.js';
+test('日期键按所配置时区且不依赖en-CA显示顺序',()=>{assert.equal(dayKey('2026-10-11T16:00:00Z','Asia/Shanghai'),'2026-10-12');assert.equal(dayKey('2026-10-11T15:59:59Z','Asia/Shanghai'),'2026-10-11');assert.equal(dayKey('2026-10-11T16:00:00Z','UTC'),'2026-10-11');assert.equal(dayKey('not-a-date','Asia/Shanghai'),null);});

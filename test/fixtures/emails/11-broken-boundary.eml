@@ -1,0 +1,10 @@
+From: "Broken" <broken@example.com>
+To: me@example.org
+Subject: Broken boundary sample
+Date: Sat, 11 Oct 2025 10:00:00 +0800
+Message-ID: <20251011.011@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="DOES-NOT-EXIST"
+
+This part has no boundary marker at all.
+Second line of the damaged body.

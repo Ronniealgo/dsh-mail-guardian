@@ -1,0 +1,29 @@
+From: "Shop News" <news@example.com>
+To: customer@example.org
+Subject: 本周优惠（含图片）
+Date: Thu, 02 Oct 2025 09:00:00 +0800
+Message-ID: <20251002.002@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="ALT-BOUNDARY-002"
+
+--ALT-BOUNDARY-002
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+本周优惠已上线。
+活动详情：https://shop.example.com/promo
+退订请访问 https://shop.example.com/unsubscribe
+
+--ALT-BOUNDARY-002
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body>
+<h1>本周优惠</h1>
+<p>亲爱的顾客，<b>满 200 减 50</b>。</p>
+<img src=3D"https://cdn.example.com/banner.png" alt=3D"banner">
+<p style=3D"background-image: url(https://cdn.example.com/bg.png)">背景</p>
+<p><a href=3D"https://shop.example.com/promo">查看活动详情</a></p>
+</body></html>
+
+--ALT-BOUNDARY-002--

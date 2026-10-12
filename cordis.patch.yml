@@ -1,0 +1,24 @@
+# dsh-mail-guardian — 邮箱管家（mail triage assistant）
+#
+# Entry config below is the plugin's runtime configuration. Every field can be
+# overridden in the plugin manager. Secrets NEVER appear here: each account
+# names a credential reference (credentialRef) whose value lives only in the
+# DSH credential store ($DSH_HOME/.credentials.yaml). Unknown config keys fail
+# the plugin loudly at load time — that is deliberate.
+- insert:
+    - id: mail-guardian
+      name: dsh-mail-guardian
+      config:
+        accounts: []
+        briefTime: "08:00"
+        style: "caring"
+        quietHours:
+          start: "22:00"
+          end: "08:00"
+        modelJudge:
+          enabled: false
+        trashRetentionDays: 30
+        folders:
+          trash: "垃圾箱"
+          archive: "归档"
+          lowPriority: "低优先"

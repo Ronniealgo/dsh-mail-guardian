@@ -1,0 +1,100 @@
+{
+  "name": "dsh-mail-guardian",
+  "version": "0.2.0",
+  "description": "dsh-mail-guardian（邮箱管家）for DeepSeek Harness: IMAP multi-account mail triage — important mail surfaced first, spam filed with an explanation, uncertain mail asked about, everything else archived quietly. Three-layer spam judgment (hard rules / heuristic scoring / optional model arbitration), daily briefing, UID-resume incremental fetch. Zero runtime dependencies; credentials live only in the DSH credential store by reference.",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "email",
+    "imap",
+    "mail",
+    "spam",
+    "phishing",
+    "assistant",
+    "windows"
+  ],
+  "license": "MIT",
+  "author": "うんけん",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./client": "./lib/client.js"
+  },
+  "files": [
+    "lib/",
+    "bin/",
+    "install.ps1",
+    "cordis.patch.yml",
+    "config.example.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "SECURITY.md",
+    "MANIFEST.txt",
+    "tools/run-tests.mjs",
+    "tools/install-state.mjs",
+    "tools/standalone-runner.mjs",
+    "tools/check-package.mjs",
+    "test/"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node tools/run-tests.mjs",
+    "check": "node tools/check-package.mjs",
+    "prepublishOnly": "node tools/check-package.mjs && node tools/run-tests.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "^0.1.7-rc.1 || ^0.2.0-rc.1",
+    "@deepseek-ai/dsh-credentials": "^0.1.7-rc.1 || ^0.2.0-rc.1",
+    "@deepseek-ai/dsh-credentials-local": "^0.1.7-rc.1 || ^0.2.0-rc.1",
+    "@deepseek-ai/dsh": ">=0.2.0-rc.2 <0.3.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-credentials": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-credentials-local": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "cordis.patch.yml"
+    },
+    "engines": {
+      "dsh": ">=0.2.0-rc.1"
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.0-rc.2": "compatible"
+      }
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-renderer"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "bin": {
+    "mail-guardian": "bin/mail-guardian.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ronniealgo/dsh-mail-guardian.git"
+  },
+  "homepage": "https://github.com/Ronniealgo/dsh-mail-guardian#readme"
+}

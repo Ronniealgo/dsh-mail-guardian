@@ -1,0 +1,15 @@
+From: "Billing Team" <billing@example.com>
+To: "Zhang San" <zhangsan@example.org>, li@example.net
+Subject: =?UTF-8?B?5pyI5bqm5a+56LSm5Y2V?=
+ =?UTF-8?Q?=EF=BC=88=E8=87=AA=E5=8A=A8=E5=8F=91=E9=80=81=EF=BC=89?=
+Date: Wed, 01 Oct 2025 12:34:56 +0800
+Message-ID: <20251001.001@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+尊敬的客户：您好！
+本月对账单已生成，请登录 https://portal.example.com/bill 查看。
+
+祝好
+Billing Team

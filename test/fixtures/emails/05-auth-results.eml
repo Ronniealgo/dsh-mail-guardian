@@ -1,0 +1,22 @@
+Return-Path: <bounce@mailer.example.com>
+Received: from mx1.mailer.example.com (mx1.mailer.example.com [192.0.2.10])
+	by mx.example.org (Postfix) with ESMTPS id 1111
+	for <victim@example.net>; Sun, 05 Oct 2025 08:00:01 +0800
+Received: from smtp.mailer.example.com (smtp.mailer.example.com [192.0.2.11])
+	by mx1.mailer.example.com with ESMTP id 2222
+	for <victim@example.net>; Sun, 05 Oct 2025 08:00:00 +0800
+Authentication-Results: mx.example.org;
+	spf=pass (mx.example.org: domain of sender@mailer.example.com designates 192.0.2.11 as permitted sender) smtp.mailfrom=sender@mailer.example.com;
+	dkim=fail (body hash mismatch) header.d=mailer.example.com;
+	dmarc=fail (p=reject) header.from=mailer.example.com
+Received-SPF: softfail (mx.example.org: domain of transitioning sender@mailer.example.com does not designate 192.0.2.11 as permitted sender)
+From: "Mailer" <sender@mailer.example.com>
+To: victim@example.net
+Subject: =?utf-8?B?5a6J5YWo5o+Q6YaS?=
+Date: Sun, 05 Oct 2025 08:00:02 +0800
+Message-ID: <20251005.005@mailer.example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+This is an automated security notice.

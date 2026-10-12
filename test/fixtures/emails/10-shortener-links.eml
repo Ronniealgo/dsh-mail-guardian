@@ -1,0 +1,26 @@
+From: "Friend" <friend@example.com>
+To: me@example.org
+Subject: =?utf-8?B?55yL55yL6L+Z5Liq?=
+Date: Fri, 10 Oct 2025 21:00:00 +0800
+Message-ID: <20251010.010@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="ALT-010"
+
+--ALT-010
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+这个链接很有意思：https://bit.ly/3xY9zAb
+还有 http://t.cn/A6xkQ9z 和 https://www.example.org/news。
+另外短链 https://tinyurl.com/abc123 。
+
+--ALT-010
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><body>
+<p>点击 <a href="https://rb.gy/xyz789">这里</a> 查看。</p>
+<p><a href="https://example.org/safe">正常链接</a></p>
+</body></html>
+
+--ALT-010--

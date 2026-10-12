@@ -1,0 +1,94 @@
+# dsh-mail-guardian v0.2.0 — 配置示例
+#
+# 用法：把下面 config: 块的内容复制进插件条目（cordis.patch.yml 的 config:
+# 或插件管理器里该插件条目的配置）。也可以直接把本文件的 config: 块当作模板。
+#
+# 三条铁律：
+#   1. 这里永远只写密码的“引用名”（credentialRef），不写密码本身。
+#   2. 未知键 / 类型不符 / 数值越界都会在插件加载时直接抛错（故意不静默降级）。
+#   3. 只有 accounts 是必填；其余键省略即用默认值，下面注释里标 [默认] 的可整段删掉。
+#
+# 密码 / 授权码的值存进 DSH 密钥库的 refs 段，键名与 credentialRef 一致：
+#   refs:
+#     MAIL_QQ_MAIN: "（你的 QQ 邮箱授权码；只存在密钥库里，不要提交到任何仓库）"
+#
+config:
+  # ── 邮箱账号（数组，可多个）─────────────────────────────────────────
+  # 下面的用户名一律是占位符，请换成你自己的地址。
+  accounts:
+    - id: qq-main                 # 必填：账号标识，仅字母数字下划线/连字符，全局唯一
+      label: "QQ 主邮箱"           # [默认 = id] 报告里显示的名字
+      host: imap.qq.com           # 必填：IMAP 主机
+      port: 993                   # [默认 993] 1–65535
+      secure: true                # [默认 true] false 表示明文连接（不建议）
+      username: you@example.com   # 必填：你的邮箱地址（占位符）
+      credentialRef: MAIL_QQ_MAIN # 必填：密钥库里的引用名，必须是纯标识符
+                                  #         [A-Za-z_][A-Za-z0-9_]*，不能是邮箱地址
+      mailbox: INBOX              # [默认 INBOX] 收信的目标文件夹
+      # servername: imap.qq.com   # [默认 = host] TLS SNI/校验名，仅特殊场景才需要
+      # folders:                  # 本账号覆盖全局 folders（服务器文件夹名不同就用它）
+      #   trash: "Junk"
+      #   lowPriority: "订阅邮件"
+
+    - id: gmail-backup
+      label: "Gmail 备用"
+      host: imap.gmail.com
+      port: 993
+      secure: true
+      username: you@example.com   # 占位符
+      credentialRef: MAIL_GMAIL_BACKUP
+
+    # ── 常见服务商预设（照抄即可，主机/端口/加密）──────────────────────
+    # QQ 邮箱   imap.qq.com            993  SSL
+    # 163 邮箱  imap.163.com           993  SSL
+    # Gmail     imap.gmail.com         993  SSL
+    # Outlook   outlook.office365.com  993  SSL
+    # QQ / 163 需先在网页版开启 IMAP 并生成“授权码”（不是登录密码）。
+
+  # ── 报告与语气 ────────────────────────────────────────────────────
+  briefTime: "08:00"          # [默认 08:00] 仅兼容旧配置，不运行定时模型任务
+  style: caring               # [默认 caring] caring 贴心 | concise 简洁 | formal 正式
+  quietHours:                 # [默认 22:00–08:00] 仅兼容旧配置；报告被动显示，不弹通知
+    start: "22:00"
+    end: "08:00"
+
+  timeZone: Asia/Shanghai     # [默认 = 系统时区] IANA 时区名，影响“今天”的划分
+
+  # ── 状态目录 ──────────────────────────────────────────────────────
+  # stateDir: "D:\\mail-guardian"  # [默认 <DSH_HOME>/mail-guardian] 缓存/断点/规则存放处
+                                     # 含发件人、主题与正文预览：按邮箱本身的敏感度保护它
+
+  # ── 后台收信预算（都是有界值，越界即报错）───────────────────────────
+  sync:
+    pollIntervalMs: 300000     # [默认 300000 = 5 分钟] 轮询间隔，60000–3600000
+    lookbackDays: 3            # [默认 3] 只回看最近几天，1–30
+    maxMessages: 40            # [默认 40] 每轮每账号最多取多少封，1–200
+    maxPreviewBytes: 65536     # [默认 65536 = 64 KB] 正文预览上限，4096–262144
+    commandTimeoutMs: 8000     # [默认 8000] 单条 IMAP 命令超时，100–30000
+    accountBudgetMs: 25000     # [默认 25000] 单账号总预算，500–120000（超时保留旧报告）
+
+  # ── 自动移动：两个独立开关，默认全关 ──────────────────────────────
+  # 只有你一次明确开启后，插件才会自动移动邮件，而且永远只是“可恢复的移动”，
+  # 不是删除。规则类与启发式分开授权，互不牵连。
+  automation:
+    moveRules: false           # [默认 false] 依据你自定规则判定的垃圾是否自动移动
+    moveHeuristics: false      # [默认 false] 启发式打分的广告/垃圾是否自动移动
+
+  # ── 灰区邮件的模型仲裁 ────────────────────────────────────────────
+  # 当前版本没有内置仲裁实现，只保留可注入的适配点（createPipeline({ modelJudge })）；
+  # 因此这里即使写 true 也没有可执行的判定器，灰区一律进“待定”问你。
+  # 也请注意：插件不存在“把邮件自动上传给第三方”的功能。
+  modelJudge:
+    enabled: false             # [默认 false]
+    # ref: MAIL_GUARDIAN_MODEL_KEY   # 若将来自行接入：同样是引用名，不写密钥值
+
+  # ── 各邮箱服务器上的目标文件夹名（按实际改）─────────────────────────
+  folders:                     # 三个都必填非空（若提供本块）
+    trash: "垃圾箱"
+    archive: "归档"
+    lowPriority: "低优先"
+
+  # ── 垃圾箱保留天数 ────────────────────────────────────────────────
+  # 仅记录你的意图（整数 1–365）。邮件进服务商垃圾箱后何时清理由服务商决定，
+  # 插件无法控制，也不承诺任何自定义保留天数。插件保证的只有：它只移动，从不永久删除。
+  trashRetentionDays: 30

@@ -1,0 +1,16 @@
+Return-Path: <bounce@marketing.example.com>
+From: "Daily Deals" <deals@marketing.example.com>
+To: subscriber@example.org
+Subject: =?utf-8?B?5LuK5pel54m55oOgIDUg5oqY?=
+List-Unsubscribe: <mailto:unsubscribe@marketing.example.com?subject=unsubscribe>,
+ <https://marketing.example.com/unsubscribe?u=abc123>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Precedence: bulk
+Date: Thu, 09 Oct 2025 07:05:00 +0800
+Message-ID: <20251009.009@marketing.example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
+
+Today only: 50% off everything.
+https://marketing.example.com/deals

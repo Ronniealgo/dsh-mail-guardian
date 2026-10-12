@@ -1,0 +1,12 @@
+import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';import {spawnSync} from 'node:child_process';import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));if(pkg.name!=='dsh-mail-guardian'||pkg.main!=='lib/index.js'||pkg.dsh?.bundle?.patch!=='cordis.patch.yml'||pkg.exports['./client']!=='./lib/client.js')throw new Error('invalid DSH package contract');
+const directories=['lib','bin','test','tools'];const files=['package.json','cordis.patch.yml','config.example.yml','README.md','CHANGELOG.md','SECURITY.md','LICENSE','install.ps1'];
+for(const optional of ['.gitignore','.gitattributes','.github/workflows/ci.yml'])if(fs.existsSync(path.join(root,optional)))files.push(optional);
+const sourceTree=fs.existsSync(path.join(root,'.github/workflows/ci.yml'));
+for(const directory of directories){const walk=dir=>{for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(e.isSymbolicLink())throw new Error('no symlinks in publication');const f=path.join(dir,e.name);if(e.isDirectory())walk(f);else files.push(path.relative(root,f).replaceAll(path.sep,'/'));}};walk(path.join(root,directory));}
+const forbidden=[/gh[pousr]_[A-Za-z0-9]{20,}/,/sk-[A-Za-z0-9]{20,}/,/C:[\\/]Users[\\/]a[\\/]/,/3441747877(?:l)?@(?:qq|gmail)[.]com/];
+for(const f of files){const b=fs.readFileSync(path.join(root,f));if(b.subarray(0,3).equals(Buffer.from([239,187,191])))throw new Error('BOM: '+f);if(b.includes(0))throw new Error('NUL byte in '+f);const text=b.toString('utf8');if(forbidden.some(p=>p.test(text)))throw new Error('private material in '+f);if(/[.]m?js$/.test(f)){const r=spawnSync(process.execPath,['--check',path.join(root,f)],{stdio:'inherit'});if(r.status!==0)throw new Error('syntax failed: '+f);}}
+const manifest=files.sort().map(f=>createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex')+'  '+f).join('\n')+'\n';
+if(process.argv.includes('--manifest'))fs.writeFileSync(path.join(root,'MANIFEST.txt'),manifest,'utf8');else {const stored=fs.readFileSync(path.join(root,'MANIFEST.txt'),'utf8');if(sourceTree&&stored!==manifest)throw new Error('stale MANIFEST.txt; regenerate before release');if(!sourceTree){const listed=new Set(stored.trim().split('\n'));for(const row of manifest.trim().split('\n'))if(!listed.has(row))throw new Error('installed package checksum mismatch');}}
+console.log('DSH contract, syntax, privacy, and manifest verified: '+files.length+' files');

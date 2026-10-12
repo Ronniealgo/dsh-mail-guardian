@@ -1,0 +1,32 @@
+From: "System" <system@example.com>
+To: ops@example.org
+Subject: =?utf-8?Q?=E9=99=84=E4=BB=B6=E6=B5=8B=E8=AF=95?=
+Date: Fri, 03 Oct 2025 10:00:00 +0800
+Message-ID: <20251003.003@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="MIX-003"
+
+--MIX-003
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Please find the two files attached.
+
+--MIX-003
+Content-Type: application/pdf; name="invoice.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="invoice.pdf"
+
+JVBERi0xLjQKJcOKw7zDtsOfCjIgMCBvYmoKPDwvTGVuZ3RoIDMgMCBSL0Zp
+bHRlci9GbGF0ZURlY29kZT4+CnN0cmVhbQp4nDPQM1Qo5ypUMFAwALJMdIwt
+CgplbmRzdHJlYW0KZW5kb2JqCmVuZG9iagp0cmFpbGVyCjw8L1Jvb3QgMSAw
+IFIgL1NpemUgND4+CnN0YXJ0eHJlZgoxNzAKJSVFT0YK
+
+--MIX-003
+Content-Type: application/octet-stream; name="setup.exe"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="setup.exe"
+
+TVqQAAMAAAAEAAAA//8AALgAAAAA
+
+--MIX-003--

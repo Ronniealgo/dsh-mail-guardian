@@ -1,0 +1,29 @@
+From: "Forwarder" <forwarder@example.com>
+To: me@example.org
+Subject: =?utf-8?B?6L2s5Y+R77ya5Lya6K6u57qq6KaB?=
+Date: Sat, 11 Oct 2025 12:00:00 +0800
+Message-ID: <20251011.012@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="FWD-012"
+
+--FWD-012
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+请查看转发的邮件。
+
+--FWD-012
+Content-Type: message/rfc822
+Content-Disposition: attachment; filename="forwarded.eml"
+Content-Transfer-Encoding: 7bit
+
+From: "Original Sender" <original@example.org>
+To: forwarder@example.com
+Subject: =?utf-8?B?5Y6f5aeL6YKu5Lu2?=
+Date: Fri, 10 Oct 2025 09:00:00 +0800
+Message-ID: <orig.001@example.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+这是被转发的原始内容。
+--FWD-012--
