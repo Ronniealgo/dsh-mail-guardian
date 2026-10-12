@@ -1,6 +1,6 @@
 {
   "name": "dsh-mail-guardian",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "dsh-mail-guardian（邮箱管家）for DeepSeek Harness: IMAP multi-account mail triage — important mail surfaced first, spam filed with an explanation, uncertain mail asked about, everything else archived quietly. Three-layer spam judgment (hard rules / heuristic scoring / optional model arbitration), daily briefing, UID-resume incremental fetch. Zero runtime dependencies; credentials live only in the DSH credential store by reference.",
   "keywords": [
     "deepseek-harness",

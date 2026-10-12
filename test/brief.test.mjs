@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { buildBrief, explainAction } from "../lib/brief.js";
 import { resolveSettings } from "../lib/config.js";
 
-const settings = resolveSettings({});
+const settings = resolveSettings({ timeZone: "Asia/Shanghai" });
 
 function item(from, subject, verdict, reason = "") {
   return {

@@ -5,6 +5,7 @@ on:
 jobs:
   core:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         node: [20, 24]

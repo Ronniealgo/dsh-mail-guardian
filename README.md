@@ -2,7 +2,7 @@
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）的邮件插件：接管「收信 → 判断 → 处置 → 汇报」。**缓存优先**——打开就能看到本地最新报告，不用等网络；重要来信排在前面，垃圾按规则归档并说明原因，拿不准的停下来问你。
 
-当前版本 **v0.2.1**（未发布到 npm，安装方式见下方「安装」一节）。作者：うんけん · 许可证：MIT。
+当前版本 **v0.2.2**（未发布到 npm，安装方式见下方「安装」一节）。作者：うんけん · 许可证：MIT。
 
 ---
 
@@ -80,15 +80,15 @@
 
 尚未发布到 npm，因此**没有** npm 安装命令，请使用 GitHub 固定版本或 Release 安装包。两种可用方式：
 
-### 方式一：DSH 插件管理器（从 git 安装，固定 v0.2.1）
+### 方式一：DSH 插件管理器（从 git 安装，固定 v0.2.2）
 
 ```powershell
-dsh plugin add github:Ronniealgo/dsh-mail-guardian#v0.2.1
+dsh plugin add github:Ronniealgo/dsh-mail-guardian#v0.2.2
 ```
 
-GitHub 仓库地址见 [package.json](package.json) 的 `repository` 字段；`#v0.2.1` 是标签引用，**不要省略**——省略会跟随默认分支的最新提交。
+GitHub 仓库地址见 [package.json](package.json) 的 `repository` 字段；`#v0.2.2` 是标签引用，**不要省略**——省略会跟随默认分支的最新提交。
 
-Release 下载页：https://github.com/Ronniealgo/dsh-mail-guardian/releases/tag/v0.2.1 。安装前请核对 SHA256；市场状态以各站实际目录为准。
+Release 下载页：https://github.com/Ronniealgo/dsh-mail-guardian/releases/tag/v0.2.2 。安装前请核对 SHA256；市场状态以各站实际目录为准。
 
 ### 方式二：本机源码链接（开发 / 试用）
 
